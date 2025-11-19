@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <ctype.h>
+#define MAX_PESSOAS 80
+struct dados { char nome[50], sexo; int idade; };
+struct consulta { int idade, escolha; char sexo; };
+void imprimirPessoas(struct dados pessoas) {
+    printf("%s\n%d\n", pessoas.nome, pessoas.idade);
+    printf("%c\n",pessoas.sexo);
+}
+int main(void) {
+    struct dados pessoas[MAX_PESSOAS];
+    struct consulta consulta;
+    char s1, s2;
+    for (int i = 0; i < MAX_PESSOAS; i++) {
+        scanf("%d", &pessoas[i].idade);
+        scanf(" %c", &pessoas[i].sexo);
+        getchar();
+        fgets(pessoas[i].nome, sizeof(pessoas[i].nome), stdin);
+    }
+    do {
+        scanf("%d", &consulta.escolha);
+        switch (consulta.escolha) {
+        case 1: for (int i = MAX_PESSOAS - 1; i >= 0; i--) {
+            printf("%s\n%d\n", pessoas[i].nome, pessoas[i].idade);
+            printf("%c\n",pessoas[i].sexo);
+        } break;
+        case 2: for (consulta.idade= 0; consulta.idade <= 120; consulta.idade++) {
+            for (int i = 0; i < MAX_PESSOAS; i++) {
+                if (pessoas[i].idade == consulta.idade)
+                    imprimirPessoas(pessoas[i]);
+                }
+            } break;
+        case 3:
+            for (consulta.idade = 120; consulta.idade >= 0; consulta.idade--) {
+                for (int i = 0; i < MAX_PESSOAS; i++) {
+                    if (pessoas[i].idade == consulta.idade)
+                        imprimirPessoas(pessoas[i]);
+                }
+            } break;
+        case 4:
+            scanf("%d", &consulta.sexo);
+            if (consulta.sexo == 1) {
+                s1 = 'f'; s2 = 'm';
+            } else {
+                s1 = 'm'; s2 = 'f';
+            }
+            for (int i = 0; i < MAX_PESSOAS; i++) {
+                if (tolower(pessoas[i].sexo) == s1)
+                    imprimirPessoas(pessoas[i]);
+            }
+            for (int i = 0; i < MAX_PESSOAS; i++) {
+                if (tolower(pessoas[i].sexo) == s2)
+                    imprimirPessoas(pessoas[i]);
+            } break;
+        }
+    } while (consulta.escolha != 5);
+    for (int i = 0; i < MAX_PESSOAS; i++)
+        imprimirPessoas(pessoas[i]);
+    return 0;
+}
