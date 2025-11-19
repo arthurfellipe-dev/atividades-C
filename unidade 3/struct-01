@@ -1,0 +1,26 @@
+#include <stdio.h>
+#define MAX_ESTOQUE 10
+struct esto {
+    float valor_und;
+    int qtd_armazenada, qtd_vendida;
+};
+int main(void) {
+    struct esto estoque[MAX_ESTOQUE];
+    for (int i = 0; i < MAX_ESTOQUE; i++) {
+        printf("\n\nproduto %d\n", i + 1);
+        printf("\tdigite o valor do produto: \n");
+        scanf("%f", &estoque[i].valor_und);
+        printf("\tdigite a quantidade no estoque: \n");
+        scanf("%d", &estoque[i].qtd_armazenada);
+        printf("\tdigite a quantidade vendida: \n");
+        scanf("%d", &estoque[i].qtd_vendida);
+    }
+    for (int i = 0; i < MAX_ESTOQUE; i++) {
+        printf("\n\nproduto %d\n\tValor: %.2f\n reais", i + 1, estoque[i].valor_und);
+        printf("\tQuantidade no estoque: %d\n", estoque[i].qtd_armazenada);
+        printf("\tQuantidade vendida: %d\n", estoque[i].qtd_vendida);
+        if (estoque[i].qtd_vendida == 0)
+            printf("produto encalhado!\n");
+    }
+    return 0;
+}
