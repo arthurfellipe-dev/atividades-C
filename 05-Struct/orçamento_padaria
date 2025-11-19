@@ -1,0 +1,40 @@
+#include <stdio.h>
+#define QTD_ORC 3
+#define QTD_PROD 5
+char nomes[QTD_PROD][30] = {
+    "Pao Frances", "Bolacha Sal",
+    "Bolacha Doce", "Bolacha Sortida", "Pao Queijo"
+};
+struct Produto{ float preco, peso; };
+struct Orcamento{ struct Produto itens[QTD_PROD]; float total; };
+int main(void) {
+    struct Orcamento orc[QTD_ORC];
+    float quantidade;
+    int i, j, opcao, mais_caro = 0, mais_barato = 0;
+    scanf("%f", &quantidade);
+    for (i = 0; i < QTD_ORC; i++) {
+        orc[i].total = 0;
+        for (j = 0; j < QTD_PROD; j++) {
+            scanf("%f %f", &orc[i].itens[j].peso, &orc[i].itens[j].preco);
+            orc[i].total += orc[i].itens[j].preco;
+        }
+        orc[i].total *= quantidade;
+        if (orc[i].total < orc[mais_barato].total) mais_barato = i;
+        if (orc[i].total > orc[mais_caro].total)   mais_caro = i;
+    }
+    printf("Mais caro: Orcamento %d R$ %.2f\n", mais_caro + 1, orc[mais_caro].total);
+    for (j = 0; j < QTD_PROD; j++)
+        printf("\t%s: R$ %.2f \\ %.2f g \n", nomes[j], orc[mais_caro].itens[j].preco, orc[mais_caro].itens[j].peso);
+    printf("Mais barato: Orcamento %d R$ %.2f\n", mais_barato + 1, orc[mais_barato].total);
+    for (j = 0; j < QTD_PROD; j++)
+        printf("\t%s: R$ %.2f \\ %.2f g \n", nomes[j], orc[mais_barato].itens[j].preco, orc[mais_barato].itens[j].peso);
+    do {
+        scanf("%d", &opcao);
+        if (opcao > 0 && opcao <= QTD_PROD) {
+            printf("Comparando %s:\n", nomes[opcao-1]);
+            for (i = 0; i < QTD_ORC; i++)
+                printf("Orcamento %d: R$ %.2f\n \\ %.2f g \n", i + 1, orc[i].itens[opcao-1].preco, orc[i].itens[opcao-1].peso);
+        }
+    } while (opcao != 0);
+    return 0;
+}
