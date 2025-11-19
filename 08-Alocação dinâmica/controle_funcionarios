@@ -1,0 +1,59 @@
+#include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void) {
+    int *p, qntd, i, *p1;
+    int novos_funcionarios, total = 0;
+    char resp;
+
+    printf("numero de funcionarios:\n");
+    scanf("%d", &qntd);
+
+    total = qntd;
+
+    p = (int *) calloc(qntd, sizeof(int));
+    if (p == NULL) {
+        printf("erro de memoria\n");
+        exit(1);
+    }
+    for ( i = 0; i < qntd; i++) {
+        printf("salario do funcionario %d: \n", i + 1);
+        scanf("%d", &p[i]);
+    }
+
+    printf("deseja adicionar novos funcionarios? (s/n)\n");
+    setbuf(stdin, NULL);
+    scanf("%c", &resp);
+    resp = toupper(resp);
+
+    if (resp == 'S') {
+        printf("quantos? \n");
+        scanf("%d", &novos_funcionarios);
+        total += novos_funcionarios;
+        p1 = (int *) realloc(p, total * sizeof(int));
+        if (p1 == NULL) {
+            free(p);
+            p = NULL;
+            printf("erro de memoria\n");
+            exit(1);
+        }
+
+        p = p1;
+
+        for ( i = qntd; i < total; i++) {
+            printf("salarios do funcionario %d: \n",i + 1);
+            scanf("%d", &p1[i]);
+        }
+    }
+    for ( i = 0; i < total; i++) {
+        if (p[i] != 1)
+            printf("salario do funcionario %d: %d reais\n", i + 1, p[i]);
+        else
+            printf("salario do funcionario %d: %d real\n", i + 1, p[i]);
+    }
+    free(p);
+    p = NULL;
+    return 0;
+}
