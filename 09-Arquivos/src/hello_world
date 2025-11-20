@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(void) {
+    FILE *file = fopen("entrada.txt", "w");
+    if (file == NULL) {
+        printf("Erro ao abrir arquivo entrada.txt");
+        exit(1);
+    }
+
+    int c = fputs("hello world", file);
+    if (c == EOF) {
+        printf("Erro ao gravar a string");
+    }
+    fclose(file);
+
+    file = fopen("entrada.txt", "r");
+    if (file == NULL) {
+        printf("Erro ao abrir arquivo entrada.txt");
+        exit(1);
+    }
+
+    FILE *file2 = fopen("saida.txt", "w");
+    if (file2 == NULL) {
+        printf("Erro ao abrir arquivo saida.txt");
+        exit(1);
+    }
+
+    c = fgetc(file);
+    while (c != EOF) {
+        fputc(c, file2);
+        c = fgetc(file);
+    }
+
+    fclose(file);
+    fclose(file2);
+  
+    return 0;
+}
