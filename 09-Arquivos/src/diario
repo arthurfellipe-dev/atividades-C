@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main(void) {
+    char escrita[1024];
+    int escolha;
+    FILE *f = fopen("log.txt", "a");
+    if (f == NULL) {
+        printf("Error opening log file\n");
+        exit(1);
+    }
+
+    do {
+        printf("1-digite no seu diário\n2-sair\n");
+        scanf("%d", &escolha);
+        getchar();
+        switch (escolha) {
+        case 1:
+            printf("querido diario:\n");
+            fgets(escrita, sizeof(escrita), stdin);
+            fputc('\n', f);
+            int c = fputs(escrita, f);
+            if (c == EOF) {
+                printf("erro ao escrever no diário\n");
+                exit(1);
+            }
+            fflush(f);
+            break;
+        case 2:
+            printf("você saiu");
+            break;
+        default:
+            printf("invalido\n");
+            break;
+        }
+    } while (escolha != 2);
+    fclose(f);
+    return 0;
+}
