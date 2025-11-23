@@ -1,1 +1,34 @@
-
+#include <stdio.h>
+#include <ctype.h>
+#define MAX_ENTREVISTA 250
+struct entrev { char sexo; int idade, qntd_livros; };
+int main(void) {
+    struct entrev entrevistado;
+    int total_menores10anos = 0, mulheres_5mais = 0, homens5menos = 0, nao_leram = 0;
+    int soma_homens5menos = 0;
+    float media = 0, percentual = 0;
+    for (int i = 0; i < MAX_ENTREVISTA; i++) {
+        scanf(" %c", &entrevistado.sexo);
+        entrevistado.sexo = tolower(entrevistado.sexo);
+        scanf("%d", &entrevistado.idade);
+        scanf("%d", &entrevistado.qntd_livros);
+        if (entrevistado.idade < 10)
+            total_menores10anos += entrevistado.qntd_livros;
+        if (entrevistado.sexo == 'f' && entrevistado.qntd_livros >= 5)
+            mulheres_5mais++;
+        if (entrevistado.sexo == 'm' && entrevistado.qntd_livros < 5) {
+            homens5menos++;
+            soma_homens5menos += entrevistado.idade;
+        }
+        if (entrevistado.qntd_livros == 0)
+            nao_leram++;
+    }
+    if (homens5menos > 0)
+        media = (float)soma_homens5menos / homens5menos;
+    percentual = (float)(nao_leram * 100) / MAX_ENTREVISTA;
+    printf("\na) Quantidade lida por menores de 10 anos: %d\n", total_menores10anos);
+    printf("\nb) Mulheres que leram 5 ou mais: %d\n", mulheres_5mais);
+    printf("\nc) Media de idade dos homens que leram menos que 5: %.2f\n", media);
+    printf("\nd) Percentual que não leu: %.2f%%\n", percentual);
+    return 0;
+}
