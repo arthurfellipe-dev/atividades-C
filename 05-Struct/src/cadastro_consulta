@@ -2,7 +2,7 @@
 #include <ctype.h>
 #define MAX_PESSOAS 80
 struct dados { char nome[50], sexo; int idade; };
-struct consulta { int idade, escolha, sexo; };
+struct consulta { int escolha, sexo; };
 void imprimirPessoas(struct dados pessoas) {
     printf("%s\n%d\n", pessoas.nome, pessoas.idade);
     printf("%c\n",pessoas.sexo);
@@ -10,10 +10,11 @@ void imprimirPessoas(struct dados pessoas) {
 int main(void) {
     struct dados pessoas[MAX_PESSOAS];
     struct consulta consulta;
-    char s1, s2;
+    
     for (int i = 0; i < MAX_PESSOAS; i++) {
         scanf("%d", &pessoas[i].idade);
         scanf(" %c", &pessoas[i].sexo);
+        getchar();
         fgets(pessoas[i].nome, sizeof(pessoas[i].nome), stdin);
     }
     do {
@@ -23,16 +24,16 @@ int main(void) {
             printf("%s%d\n", pessoas[i].nome, pessoas[i].idade);
             printf("%c\n",pessoas[i].sexo);
         } break;
-        case 2: for (consulta.idade= 0; consulta.idade <= 120; consulta.idade++) {
+        case 2: for (int j = 0; j <= 120; j++) {
             for (int i = 0; i < MAX_PESSOAS; i++) {
-                if (pessoas[i].idade == consulta.idade)
+                if (pessoas[i].idade == j)
                     imprimirPessoas(pessoas[i]);
                 }
             } break;
         case 3:
-            for (consulta.idade = 120; consulta.idade >= 0; consulta.idade--) {
+            for (j = 120; j >= 0; j--) {
                 for (int i = 0; i < MAX_PESSOAS; i++) {
-                    if (pessoas[i].idade == consulta.idade)
+                    if (pessoas[i].idade == j)
                         imprimirPessoas(pessoas[i]);
                 }
             } break;
