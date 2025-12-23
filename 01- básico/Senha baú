@@ -1,0 +1,14 @@
+#include <stdio.h>
+int main() {
+   int senha, i = 0;
+     for (i = 1; i <= 3; i++) {
+       scanf("%d", &senha);
+        if(senha == 1234) {
+         printf("Tesouro aberto!");
+        break;
+        }
+     }
+  if (i > 3)
+      printf("Você falhou");
+    return 0; 
+}
