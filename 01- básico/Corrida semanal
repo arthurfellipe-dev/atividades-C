@@ -1,0 +1,10 @@
+#include <stdio.h>
+int main() {
+   float dist, total = 0;
+     for (int i=1;i<=7;i++){
+         scanf("%f", &dist);
+         total = total + dist;
+     }
+      printf("Total da semana:%.2f km", total);
+    return 0;
+}
