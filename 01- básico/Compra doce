@@ -1,0 +1,15 @@
+int main(){
+  const float DOCE = 1.50;
+    float preco, troco, total = 0;
+      while (total < DOCE) {
+        scanf("%f", &preco);
+          total += preco;
+      } 
+      if (total == DOCE)
+          printf("Aproveite seu doce!");
+        else {
+            troco = total - DOCE;
+            printf("seu troco é: %.2f", troco);
+        }
+    return 0;
+}
