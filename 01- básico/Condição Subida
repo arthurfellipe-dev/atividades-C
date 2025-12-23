@@ -1,0 +1,10 @@
+ #include <stdio.h>
+int main(){
+    int temp;
+      scanf("%d", &temp);
+        if (temp >= -5 && temp <= 10)
+          printf("Subida autorizada");
+          else 
+           printf("Condições perigosas");
+    return 0;
+}
