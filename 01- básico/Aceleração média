@@ -1,0 +1,17 @@
+#include <stdio.h>
+
+int main() {
+    int v1, v2, t1, t2;
+    float a;
+    
+    scanf("%d", &v1);
+    scanf("%d", &v2);
+    scanf("%d", &t1);
+    scanf("%d", &t2);
+    
+    a = (v2-v1) / (t2-t1);
+    
+    printf("a aceleração média é: %.2f m/s²", a);
+
+    return 0; 
+}
