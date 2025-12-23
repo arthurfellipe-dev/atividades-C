@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main() {
+  int idade;
+    scanf("%d", &idade);
+      if (idade >= 16) {
+          printf(" acesso permitido");
+       } else {
+        printf("volte quando for mais velha");
+       }
+    return 0; 
+}
