@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+int main () {
+    int inimigo = 100, jogador = 100, menu;
+    int verificar;
+    while (inimigo > 0 && jogador > 0){
+        verificar = 0;
+        printf("\n    menu    \n");
+        printf("1- expelliarmus \n");
+        printf("2- stupefy\n");
+        printf("3- protego\n");
+        printf("4- reparo\n");
+        scanf("%d", &menu);
+        
+        switch (menu) {
+            case 1:
+                inimigo -= 15;
+                break;
+            case 2:
+                if (inimigo < 50)
+                    inimigo -= 50;
+                else 
+                    inimigo -= 25;
+                break;
+            case 3:
+                verificar = 1;
+                break;
+            case 4:
+                printf("invalido\n");
+                break;
+        }
+            if (inimigo < 0)
+                inimigo = 0;
+            if (jogador < 0)
+                jogador = 0;
+                
+        if (verificar != 1)
+            jogador -= 20;
+        printf("inimigo: %d\n", inimigo);
+        printf("jogador: %d\n", jogador);
+    }
+    
+    if (jogador > inimigo)
+        printf("o vencedor é jogador");
+    else
+        printf("inimigo venceu");
+}
