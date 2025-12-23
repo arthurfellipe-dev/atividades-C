@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main() {
+  int qnt_cafe;
+  float cafe;
+    scanf("%d", &qnt_cafe);
+     cafe = qnt_cafe*5;
+      if(qnt_cafe > 3){
+          cafe = cafe / 10 + cafe;
+          printf("preço a pagar: %.2f", cafe);
+      } else 
+          printf("preço a pagar: %.2f",cafe);
+    return 0; 
+}
