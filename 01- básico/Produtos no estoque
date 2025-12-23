@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main(){
+    int i, j, itens, qtd = 0;
+    scanf("%d", &i);
+    for (j = 1; j <= i; i--){
+        scanf("%d", &itens);
+        qtd += itens;
+    }
+    printf("produtos no estoque: %d", qtd);
+    return 0;
+}
