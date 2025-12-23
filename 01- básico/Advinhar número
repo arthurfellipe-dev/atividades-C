@@ -1,0 +1,17 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+int main() {
+   srand(time(NULL));
+    int aleatorio, palpite;
+    aleatorio = rand () % 10 + 1;
+     scanf("%d", &palpite);
+      while (palpite != aleatorio){
+          if(palpite != aleatorio)
+                printf("Tente novamente\n");
+                scanf("%d", &palpite);
+      }
+      if(palpite == aleatorio)
+                printf("Parábens");
+    return 0;
+}
