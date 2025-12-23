@@ -1,0 +1,14 @@
+#include <stdio.h>
+
+int main() {
+    int maca, caixa, sobra;
+   
+    scanf("%d", &maca);
+   
+    caixa = maca / 20;
+    sobra = maca % 20;
+     
+    printf("caixas completas: %d. sobraram: %d", caixa, sobra);
+    
+    return 0; 
+}
