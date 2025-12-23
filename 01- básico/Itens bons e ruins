@@ -1,0 +1,20 @@
+#include <stdio.h>
+int main() {
+    
+    int qtdItem, itens, bom = 0, ruim = 0;
+    
+    scanf("%d", &qtdItem);
+    
+    for (int i = 0; i<qtdItem; i++){
+        scanf("%d", &itens);
+        if (itens == 1)
+            bom++;
+         else
+            ruim++;
+    }
+    
+    printf("quantidade bons: %d ", bom);
+    printf("quantidade ruins: %d", ruim);
+    
+    return 0;
+}
