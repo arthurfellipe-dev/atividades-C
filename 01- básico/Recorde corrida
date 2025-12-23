@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main() {
+  float distancia;
+     scanf("%f", &distancia);
+      if (distancia > 42) 
+          printf("Novo recorde");
+       else if (distancia == 42) 
+          printf("Você igualou o recorde");
+       else 
+       printf("Continue treinando");
+    return 0; 
+}
