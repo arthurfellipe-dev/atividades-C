@@ -1,32 +1,116 @@
 #include <stdio.h>
+#include <string.h>
 
-#define QNTD 200
+#define MAX 100
 
 typedef struct {
     char nome[50];
     float preco;
-    int qntd, id;
     char placa[8];
+    int ano;
 } Dados;
 
-Dados carro[QNTD];
+Dados carro[MAX];
+int total = 0;
 
 void criar() {
+    if (total >= MAX){
+        printf("\nLocadora lotada\n");
+        return;
+    }
+
+    printf("\nModelo do carro: \n");
+    fgets(carro[total].nome, sizeof(carro[total].nome), stdin);
+
+    printf("\nPreco do carro: \n");
+    scanf("%f", &carro[total].preco);
+    getchar();
+
+    printf("\nPlaca do carro: \n");
+    fgets(carro[total].placa, sizeof(carro[total].placa), stdin);
+    carro[total].placa[strcspn(carro[total].placa, "\n")] = '\0';
+
+
+    printf("\nAno do carro: \n");
+    scanf("%d", &carro[total].ano);
+    getchar();
+
+    printf("\nCarro cadastrado com sucesso!!");
+    total++;
 
 }
 
 void listar() {
+    if (total == 0){
+        printf("\nNenhum carro cadastrado\n");
+        return;
+    }
 
+    for (int i = 0; i < total; i ++){
+            printf("\nNome: %sPlaca: %s\n", carro[i].nome, carro[i].placa);
+            printf("Ano: %d\nPreco: %.2f\n", carro[i].ano, carro[i].preco);
+    }
 }
 
 void excluir() {
+    char placa_excluir[8];
+    if (total == 0){
+        printf("\nNenhum carro cadastrado\n");
+        return;
+    }
+
+    printf("\nPlaca do carro que deseja remover: \n");
+    fgets(placa_excluir, sizeof(placa_excluir), stdin);
+    placa_excluir[strcspn(placa_excluir, "\n")] = '\0';
+
+    for (int i = 0; i < total; i ++) {
+        if (strcmp(carro[i].placa, placa_excluir) == 0) {
+            for (int j = i; j < total - 1; j++) {
+                carro[j] = carro[j + 1];
+            }
+            total--;
+            printf("\nCarro excluido com sucesso!!");
+            return;
+        }
+    }
+
+    printf("\nCarro nao encontrado");
 
 }
 
 void atualizar() {
+    if (total == 0) {
+        printf("\nNenhum carro cadastrado\n");
+        return;
+    }
+    char placa_atualizar[8];
 
+    printf("\nPlaca do carro que deseja atualizar: \n");
+    fgets(placa_atualizar, sizeof(placa_atualizar), stdin);
+    placa_atualizar[strcspn(placa_atualizar, "\n")] = '\0';
+
+    for (int i = 0; i < total; i ++) {
+        if (strcmp(carro[i].placa, placa_atualizar) == 0) {
+
+            printf("\nModelo do carro: \n");
+            fgets(carro[i].nome, sizeof(carro[i].nome), stdin);
+
+            printf("\nPreco do carro: \n");
+            scanf("%f", &carro[i].preco);
+            getchar();
+
+            printf("\nPlaca do carro: \n");
+            fgets(carro[i].placa, sizeof(carro[i].placa), stdin);
+            carro[i].placa[strcspn(carro[i].placa, "\n")] = '\0';
+
+            printf("\nCarro atualizado com sucesso!!\n");
+            return;
+        }
+    }
+
+    printf("\nCarro nao encontrado");
 }
-int main(void) {
+int main() {
     int opcao;
 
     do {
@@ -36,6 +120,7 @@ int main(void) {
         printf("3- Atualizar\n");
         printf("4- Excluir\n");
         scanf("%d", &opcao);
+        getchar();
 
         switch (opcao) {
             case 1: criar(); break;
