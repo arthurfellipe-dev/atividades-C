@@ -1,0 +1,11 @@
+#include <stdio.h>
+int main() {
+    int ovo = 1, bilhete = 0;
+      while( ovo > 0){
+      scanf("%d", &ovo);
+          if (ovo >= 5)
+             bilhete++;
+   }
+    printf("casas com bilhete: %d", bilhete);
+    return 0;
+}
