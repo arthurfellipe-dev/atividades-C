@@ -1,0 +1,15 @@
+#include <stdio.h>
+int main() {
+    int idade = 1, ovo = 0;
+    while (idade != 0) {
+        scanf("%d", &idade);
+        if(idade < 6)
+            ovo++;
+         else if (idade >= 6 && idade <= 10)
+            ovo += 2;
+         else if (idade > 10)
+            ovo += 3;
+    }
+    printf("foram distribuídos %d, ovos", ovo - 1);
+    return 0;
+}
