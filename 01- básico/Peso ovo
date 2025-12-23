@@ -1,0 +1,14 @@
+#include <stdio.h>
+int main(){
+    int ovo;
+  for (int i = 1; i <= 10; i++) {
+      scanf("%d", &ovo);
+       if (ovo < 100)
+           printf("ovo leve\n");
+        else if(ovo >= 100 && ovo <= 200)
+           printf("ovo médio\n");
+          else
+             printf("ovo pesado\n");
+  }
+    return 0;
+}
