@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+    
+   int vendas, produtos;
+   float preco, sub, tot;
+   
+   scanf("%d", &vendas);
+   
+   for(int i = 0;i<vendas; i++){
+       scanf("%d", &produtos);
+       sub = 0;
+       for (int j = 0; j < produtos; j++){
+           scanf("%f", &preco);
+           sub += preco;
+           tot += preco
+       }
+       printf("subtotal da venda %d: %.2f", i, subtotal);
+   }
+   printf("total é: %.2f", total);
+    return 0;
+}
